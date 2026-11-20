@@ -2,7 +2,7 @@
 Flask
 pandas
 numpy
-scikit-learn>=1.2
+scikit-learn==1.6.1
 joblib
 matplotlib
 seaborn
