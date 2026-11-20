@@ -1,63 +1,176 @@
+🚀 DeliverIQ – Food Delivery Analytics
 
-# 🚚 DeliverIQ – Food Delivery Analytics
+Data Wrangling, Exploratory Data Analysis & Machine Learning Dashboard
 
-### Data Wrangling and Preprocessing Mini Project
+DeliverIQ is a food delivery analytics project developed using Python, Flask, Pandas, and Machine Learning. The project focuses on transforming raw food delivery data into clean, structured, integrated, and analysis-ready data.
 
-DeliverIQ is a Python-based Data Wrangling and Preprocessing project that analyzes food delivery operations using the Zomato Delivery Dataset.
+It provides an interactive analytics dashboard to explore delivery performance, understand factors affecting delivery time, visualize patterns, and demonstrate machine learning predictions.
 
-The project demonstrates data collection, data cleaning, data transformation, data integration, exploratory data analysis (EDA), and data preprocessing.
+🌐 Live Demo: https://deliveriq-1upc.onrender.com
+
+📂 GitHub Repository: https://github.com/tejjas12/DeliverIQ
 
 ---
 
-## 📌 Project Overview
+📌 Project Overview
 
-| Details | Information |
-|---|---|
-| Project Name | DeliverIQ |
-| Domain | Food Delivery Analytics |
-| Dataset | Zomato Delivery Dataset |
-| Original Records | 45,584 |
-| Original Features | 20 |
-| Programming Language | Python |
-| IDE | Visual Studio Code |
-| Project Type | DWP Mini Project |
+Food delivery services generate large amounts of data related to orders, delivery partners, weather conditions, traffic, vehicles, and delivery time.
 
-## 🎯 Objectives
+Analyzing this data can help identify patterns and understand the factors associated with delivery performance.
 
-- Collect and understand food delivery data.
-- Identify and handle missing values.
-- Detect invalid and duplicate records.
-- Transform numerical and categorical features.
-- Integrate weather and traffic reference data.
-- Perform exploratory data analysis.
-- Apply encoding and feature scaling.
-- Prepare machine learning-ready datasets.
+DeliverIQ implements a complete data processing workflow, including:
 
-## 🛠️ Technology Stack
+- Data Collection
+- Data Understanding and Quality Assessment
+- Data Cleaning
+- Data Transformation
+- Data Integration
+- Exploratory Data Analysis (EDA)
+- Data Preprocessing
+- Final Data Verification
+- Machine Learning Model Training and Visualization
 
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- VS Code
+The project also includes a Flask-based web dashboard for interactive data exploration and model-related insights.
 
-## 📂 Project Structure
+🎯 Project Objectives
 
-```text
+- Collect and understand real-world food delivery data.
+- Identify and handle missing values, duplicate records, and inconsistent data.
+- Perform data cleaning and transformation.
+- Integrate additional weather and traffic reference information.
+- Perform Exploratory Data Analysis using visualizations.
+- Prepare numerical and categorical features for machine learning.
+- Train and evaluate delivery-time prediction models.
+- Present analytical results through an interactive dashboard.
+
+📊 Dataset Description
+
+Dataset: Zomato Food Delivery Dataset
+
+The dataset contains approximately 45,584 records and 20 original attributes.
+
+Important features include:
+
+Feature| Description
+Delivery_person_Age| Age of delivery partner
+Delivery_person_Ratings| Delivery partner rating
+Weather_conditions| Weather during delivery
+Road_traffic_density| Traffic conditions
+Type_of_order| Food order category
+Type_of_vehicle| Vehicle used for delivery
+Vehicle_condition| Condition of delivery vehicle
+multiple_deliveries| Number of deliveries handled
+City| City category
+Order_Date| Order date
+Time_Orderd| Order placement time
+Time_taken (min)| Delivery time in minutes
+
+Target Variable: "Time_taken (min)"
+
+🛠️ Technologies Used
+
+Technology| Purpose
+Python| Core programming
+Pandas| Data manipulation
+NumPy| Numerical operations
+Matplotlib| Data visualization
+Seaborn| Statistical visualization
+Scikit-learn| Data preprocessing and machine learning
+Joblib| Model serialization
+Flask| Backend web framework
+HTML & CSS| Frontend interface
+JavaScript| Dashboard interactions
+Plotly| Interactive visualizations
+Git & GitHub| Version control
+Render| Web application deployment
+
+⚙️ Project Methodology
+
+Stage 1 – Data Collection
+
+Collected the food delivery dataset and organized the raw data for processing.
+
+Stage 2 – Data Understanding & Quality Assessment
+
+Examined dataset structure, data types, missing values, duplicate records, and data quality issues.
+
+Stage 3 – Data Cleaning
+
+Handled missing values, duplicate records, inconsistent values, and unnecessary data.
+
+Stage 4 – Data Transformation
+
+Applied data transformation techniques, including feature creation, standardization, and normalization.
+
+Stage 5 – Data Integration
+
+Integrated weather and traffic reference information with the main dataset using Pandas merge operations.
+
+Stage 6 – Exploratory Data Analysis (EDA)
+
+Created visualizations to understand delivery-time patterns and relationships between different variables.
+
+Stage 7 – Data Preprocessing
+
+Prepared numerical and categorical features using imputation, scaling, encoding, and train-test splitting.
+
+Stage 8 – Final Data Verification
+
+Performed final verification of generated files, data quality, preprocessing outputs, and visualizations.
+
+Stage 9 – Model Training & Visualization
+
+Implemented machine learning model training and model evaluation visualizations for delivery-time prediction.
+
+📈 Dashboard Features
+
+DeliverIQ includes an interactive web dashboard with the following sections:
+
+- Dashboard Overview: Displays dataset statistics and delivery performance.
+- Analytics: Explores weather, traffic, city category, and vehicle-related delivery patterns.
+- ML Models: Presents machine learning model evaluation results.
+- AI Predictor: Provides a delivery-time prediction interface.
+- Insights: Displays analytical findings and useful observations.
+- About Project: Provides project information and methodology.
+
+🤖 Machine Learning
+
+The project includes a trained Random Forest Regression model for delivery-time prediction.
+
+The model uses a preprocessing pipeline to prepare input features before generating predictions.
+
+Model artifacts:
+
+- "deliveriq_best_model.joblib"
+- "deliveriq_preprocessor.joblib"
+
+Model evaluation results and prediction outputs are stored separately in the project outputs directory.
+
+📂 Project Structure
+
 DeliverIQ/
+│
+├── app.py
+├── main.py
+├── requirements.txt
+├── .python-version
+├── .gitignore
+├── README.md
 │
 ├── data/
 │   ├── raw/
 │   ├── processed/
-│   ├── reference/
-│   └── final/
+│   ├── final/
+│   │   └── deliveriq_integrated.csv
+│   └── reference/
 │
 ├── models/
-├── notebooks/
+│   ├── deliveriq_best_model.joblib
+│   └── deliveriq_preprocessor.joblib
+│
 ├── outputs/
-│   └── eda_graphs/
+│   ├── eda_graphs/
+│   └── model_evaluation/
 │
 ├── reports/
 │   └── DeliverIQ_Project_Report.md
@@ -69,112 +182,108 @@ DeliverIQ/
 │   ├── stage5_integration.py
 │   ├── stage6_eda.py
 │   ├── stage7_preprocessing.py
-│   └── stage8_final_verification.py
+│   ├── stage8_final_verification.py
+│   ├── stage9_model_training.py
+│   └── stage10_model_visualization.py
 │
-├── main.py
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
+├── static/
+│   ├── css/
+│   └── js/
+│
+└── templates/
+    └── index.html
 
-## ⚙️ Installation & Setup
+Note: The structure above represents the main project files. Some generated files and local datasets may not be included in the repository.
 
-### 1. Clone Repository
+💻 Installation & Setup
 
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-```
+1. Clone the Repository
 
-### 2. Navigate to Project
+git clone https://github.com/tejjas12/DeliverIQ.git
 
-```bash
+2. Navigate to the Project Folder
+
 cd DeliverIQ
-```
 
-### 3. Create Virtual Environment
+3. Create a Virtual Environment
 
-```bash
-python3 -m venv venv
-```
+python -m venv venv
 
-### 4. Activate Environment
+Activate it:
 
 Mac/Linux:
 
-```bash
 source venv/bin/activate
-```
 
 Windows:
 
-```bash
 venv\Scripts\activate
-```
 
-### 5. Install Dependencies
+4. Install Dependencies
 
-```bash
 pip install -r requirements.txt
-```
 
-## 🚀 Project Execution
+5. Run the Application
 
-Run the stages in the following order:
+python app.py
 
-```bash
-python main.py
-python src/stage2_quality.py
-python src/stage3_cleaning.py
-python src/stage4_transformation.py
-python src/stage5_integration.py
-python src/stage6_eda.py
-python src/stage7_preprocessing.py
-python src/stage8_final_verification.py
-```
+Open your browser:
 
-Run Stage 1 first using `main.py`.
+http://127.0.0.1:5000
 
-## 📊 Exploratory Data Analysis
+Note: The integrated dataset and model artifacts must be available at their configured paths before running the application.
 
-The project includes the following visualizations:
+📊 Key Project Outputs
 
-1. Delivery Time Distribution
-2. Weather vs Delivery Time
-3. Traffic vs Delivery Time
-4. City Category Analysis
-5. Vehicle Analysis
-6. Delivery Person Rating Distribution
-7. Correlation Heatmap
-8. Order Type Analysis
+- Cleaned dataset
+- Transformed dataset
+- Standardized and normalized datasets
+- Integrated dataset
+- EDA graphs and analysis reports
+- Preprocessed training and testing datasets
+- Trained machine learning model
+- Model evaluation visualizations
+- Interactive Flask dashboard
 
-## 📁 Generated Outputs
+🔍 Project Verification
 
-- Cleaned Dataset
-- Integrated Dataset
-- Training Dataset
-- Testing Dataset
-- Weather and Traffic Lookup Tables
-- EDA Visualizations
-- Data Quality Reports
-- Preprocessing Pipeline
+The final verification stage completed 30 out of 30 checks successfully, confirming the configured project files, data quality checks, and EDA outputs.
 
-## 🎯 Future Scope
+🌐 Deployment
 
-- Food delivery time prediction.
-- Interactive analytics dashboard.
-- Real-time weather integration.
-- Advanced delivery performance analytics.
+The Flask application is deployed using Render.
 
-## 👨‍💻 Author
+Live Application:
+https://deliveriq-1upc.onrender.com
 
-**Tejas Patil**
+🚀 Future Scope
+
+- Real-time food delivery data integration.
+- Advanced delivery-time prediction.
+- Live weather and traffic API integration.
+- Interactive location-based delivery analytics.
+- Improved model comparison and optimization.
+- Cloud-based data storage and automated pipelines.
+
+👨‍💻 Author
+
+Tejas Patil
 
 B.Tech – Computer Science and Engineering (Data Science)
 
-Data Wrangling and Preprocessing Mini Project
+D Y Patil International University, Pune
+
+- GitHub: https://github.com/tejjas12
+- Project: https://github.com/tejjas12/DeliverIQ
 
 ---
 
-## 📜 License
+📜 License
 
-This project is developed for academic and educational purposes.
+This project is developed for academic and educational purposes as part of the Data Wrangling and Preprocessing (DWP) internal assessment.
+
+---
+
+⭐ If you find this project interesting, consider giving the repository a star!
+
+DeliverIQ – Transforming Food Delivery Data into Meaningful Insights.
