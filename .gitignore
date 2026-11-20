@@ -1,0 +1,26 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+.env
+
+# Mac
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Large dataset files
+data/raw/*.csv
+data/processed/*.csv
+data/final/*.csv
+
+# Generated model files
+models/*.pkl
+models/*.joblib
+
+# Temporary files
+*.log

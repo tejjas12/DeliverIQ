@@ -1,0 +1,38 @@
+DELIVERIQ - STAGE 2 QUALITY REPORT
+==================================================
+
+Total Rows: 45584
+Total Columns: 20
+Duplicate Rows: 0
+Age Below 18: 38
+Ratings Above 5: 53
+Zero Coordinate Records: 3640
+
+MISSING VALUE REPORT
+                     Column  Missing_Count  Missing_Percentage
+                         ID              0                0.00
+         Delivery_person_ID              0                0.00
+        Delivery_person_Age           1854                4.07
+    Delivery_person_Ratings           1908                4.19
+        Restaurant_latitude              0                0.00
+       Restaurant_longitude              0                0.00
+ Delivery_location_latitude              0                0.00
+Delivery_location_longitude              0                0.00
+                 Order_Date              0                0.00
+                Time_Orderd           1731                3.80
+          Time_Order_picked              0                0.00
+         Weather_conditions            616                1.35
+       Road_traffic_density            601                1.32
+          Vehicle_condition              0                0.00
+              Type_of_order              0                0.00
+            Type_of_vehicle              0                0.00
+        multiple_deliveries            993                2.18
+                   Festival            228                0.50
+                       City           1200                2.63
+           Time_taken (min)              0                0.00
+
+OUTLIER REPORT
+                 Column  Lower Limit  Upper Limit  Outlier Count
+    Delivery_person_Age         10.0         50.0              0
+Delivery_person_Ratings          3.9          5.5           1223
+       Time_taken (min)         -0.5         51.5            270

@@ -1,0 +1,8 @@
+Metric,Value
+Original Rows,45584
+Final Rows,45584
+Duplicate Rows Removed,0
+Invalid Ages Corrected,38
+Invalid Ratings Corrected,53
+Zero Coordinate Records Flagged,3640
+Remaining Missing Values,7280

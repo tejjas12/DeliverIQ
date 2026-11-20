@@ -1,0 +1,1300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DeliverIQ | Food Delivery Analytics</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">D</div>
+            <div>
+                <h2>DeliverIQ</h2>
+                <p>Food Intelligence</p>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#overview" class="nav-link active">◈ Dashboard</a>
+            <a href="#analytics" class="nav-link">▤ Analytics</a>
+            <a href="#models" class="nav-link">◎ ML Models</a>
+            <a href="#predictor" class="nav-link">✦ AI Predictor</a>
+            <a href="#insights" class="nav-link">✧ Insights</a>
+            <a href="#about" class="nav-link">◉ About Project</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="status-dot"></div>
+            <span>Local System</span>
+            <p>DeliverIQ v1.0</p>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">FOOD DELIVERY ANALYTICS PLATFORM</p>
+                <h1>Dashboard Overview</h1>
+                <p class="subtitle">
+                    Explore delivery performance, patterns and machine learning results.
+                </p>
+            </div>
+
+            <div class="top-right">
+                <span class="live-status">
+                    <span class="status-dot"></span> SYSTEM READY
+                </span>
+
+                <div class="profile">DQ</div>
+            </div>
+
+        </header>
+
+
+        <!-- OVERVIEW -->
+        <section id="overview" class="section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Performance Overview</h2>
+                    <p>Your dataset at a glance</p>
+                </div>
+
+                <span class="section-tag">DATASET SUMMARY</span>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-label">Total Records</div>
+                    <div class="stat-value" id="totalRecords">--</div>
+                    <div class="stat-note">Dataset observations</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Average Delivery Time</div>
+                    <div class="stat-value">
+                        <span id="avgTime">--</span>
+                        <small>min</small>
+                    </div>
+                    <div class="stat-note">Average time taken</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Minimum Delivery Time</div>
+                    <div class="stat-value">
+                        <span id="minTime">--</span>
+                        <small>min</small>
+                    </div>
+                    <div class="stat-note">Fastest recorded delivery</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Maximum Delivery Time</div>
+                    <div class="stat-value">
+                        <span id="maxTime">--</span>
+                        <small>min</small>
+                    </div>
+                    <div class="stat-note">Longest recorded delivery</div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ANALYTICS -->
+        <section id="analytics" class="section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Delivery Analytics</h2>
+                    <p>Understand how different factors relate to delivery time.</p>
+                </div>
+
+                <span class="section-tag">EXPLORATORY DATA ANALYSIS</span>
+            </div>
+
+            <div class="charts-grid">
+
+                <div class="chart-card">
+                    <h3>Weather vs Delivery Time</h3>
+                    <div id="weatherChart" class="chart"></div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Traffic vs Delivery Time</h3>
+                    <div id="trafficChart" class="chart"></div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>City Category Analysis</h3>
+                    <div id="cityChart" class="chart"></div>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Vehicle Type Analysis</h3>
+                    <div id="vehicleChart" class="chart"></div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- MACHINE LEARNING -->
+        <section id="models" class="section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Machine Learning Performance</h2>
+                    <p>Comparison of trained regression algorithms.</p>
+                </div>
+
+                <span class="section-tag">MODEL EVALUATION</span>
+            </div>
+
+            <div class="model-summary">
+
+                <div>
+                    <p class="stat-label">Selected Best Model</p>
+                    <h2 id="bestModel">Loading...</h2>
+                </div>
+
+                <div>
+                    <p class="stat-label">Mean Absolute Error</p>
+                    <h2 id="bestMAE">--</h2>
+                </div>
+
+                <div>
+                    <p class="stat-label">R² Score</p>
+                    <h2 id="bestR2">--</h2>
+                </div>
+
+            </div>
+
+            <div class="chart-card model-chart-card">
+                <h3>Algorithm Comparison</h3>
+                <div id="modelChart" class="chart"></div>
+            </div>
+
+        </section>
+
+
+        <!-- AI PREDICTION -->
+        <section id="predictor" class="section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>AI Delivery Time Predictor</h2>
+                    <p>
+                        Enter delivery details to estimate delivery time using Machine Learning.
+                    </p>
+                </div>
+
+                <span class="section-tag">RANDOM FOREST MODEL</span>
+            </div>
+
+            <div class="prediction-container">
+
+                <form id="predictionForm">
+
+                    <h3 class="form-heading">Delivery Information</h3>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Delivery Person Age</label>
+                            <input type="number" name="Delivery_person_Age"
+                                   min="18" max="100" required placeholder="e.g. 28">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Delivery Person Rating</label>
+                            <input type="number" name="Delivery_person_Ratings"
+                                   min="1" max="5" step="0.1" required placeholder="e.g. 4.5">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Vehicle Condition</label>
+                            <select name="Vehicle_condition" required>
+                                <option value="">Select condition</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Multiple Deliveries</label>
+                            <select name="multiple_deliveries" required>
+                                <option value="">Select</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Weather Conditions</label>
+                            <select name="Weather_conditions" required>
+                                <option value="">Select weather</option>
+                                <option>Cloudy</option>
+                                <option>Fog</option>
+                                <option>Sandstorms</option>
+                                <option>Stormy</option>
+                                <option>Sunny</option>
+                                <option>Windy</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Road Traffic Density</label>
+                            <select name="Road_traffic_density" required>
+                                <option value="">Select traffic</option>
+                                <option>Low</option>
+                                <option>Medium</option>
+                                <option>High</option>
+                                <option>Jam</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Type of Order</label>
+                            <select name="Type_of_order" required>
+                                <option value="">Select order</option>
+                                <option>Buffet</option>
+                                <option>Drinks</option>
+                                <option>Meal</option>
+                                <option>Snack</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Type of Vehicle</label>
+                            <select name="Type_of_vehicle" required>
+                                <option value="">Select vehicle</option>
+                                <option value="bicycle">Bicycle</option>
+                                <option value="electric_scooter">Electric Scooter</option>
+                                <option value="motorcycle">Motorcycle</option>
+                                <option value="scooter">Scooter</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Festival</label>
+                            <select name="Festival" required>
+                                <option value="">Select</option>
+                                <option>No</option>
+                                <option>Yes</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>City Category</label>
+                            <select name="City" required>
+                                <option value="">Select city category</option>
+                                <option>Metropolitian</option>
+                                <option>Semi-Urban</option>
+                                <option>Urban</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Delivery Distance (KM)</label>
+                            <input type="number" name="Delivery_Distance_km"
+                                   min="0" step="0.1" required placeholder="e.g. 5.5">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Order Hour (0–23)</label>
+                            <input type="number" name="Order_Hour"
+                                   min="0" max="23" required placeholder="e.g. 14">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Order Month (1–12)</label>
+                            <input type="number" name="Order_Month"
+                                   min="1" max="12" required placeholder="e.g. 11">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Order Weekday</label>
+                            <select name="Order_Weekday" required>
+                                <option value="">Select day</option>
+                                <option value="0">Monday</option>
+                                <option value="1">Tuesday</option>
+                                <option value="2">Wednesday</option>
+                                <option value="3">Thursday</option>
+                                <option value="4">Friday</option>
+                                <option value="5">Saturday</option>
+                                <option value="6">Sunday</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Weekend</label>
+                            <select name="Is_Weekend" required>
+                                <option value="">Select</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <button type="submit"
+                            class="predict-button"
+                            id="predictButton">
+                        ✦ Predict Delivery Time
+                    </button>
+
+                    <p id="predictionError" class="prediction-error"></p>
+
+                </form>
+
+                <div id="predictionResult"
+                     class="prediction-result"
+                     hidden>
+
+                    <p class="result-label">
+                        ESTIMATED DELIVERY TIME
+                    </p>
+
+                    <h2>
+                        <span id="predictedTime">--</span>
+                        <small>minutes</small>
+                    </h2>
+
+                    <p id="predictionModel">
+                        Powered by Random Forest Regressor
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INSIGHTS -->
+        <section id="insights" class="section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Project Insights</h2>
+                    <p>Important observations from DeliverIQ.</p>
+                </div>
+
+                <span class="section-tag">KEY FINDINGS</span>
+            </div>
+
+            <div class="insights-grid">
+
+                <div class="insight-card">
+                    <span class="insight-number">01</span>
+                    <h3>Traffic Impact</h3>
+                    <p>
+                        Delivery time varies across different road traffic conditions.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <span class="insight-number">02</span>
+                    <h3>Weather Analysis</h3>
+                    <p>
+                        Weather categories show different average delivery durations.
+                    </p>
+                </div>
+
+                <div class="insight-card">
+                    <span class="insight-number">03</span>
+                    <h3>ML Prediction</h3>
+                    <p>
+                        Regression algorithms are evaluated to identify the best-performing model.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================== -->
+        <!-- ABOUT PROJECT - COMPLETE DOCUMENTATION -->
+        <!-- =================================== -->
+
+        <section id="about" class="section about-section">
+
+            <div class="about-hero">
+
+                <div class="about-hero-content">
+
+                    <span class="about-eyebrow">THE STORY BEHIND THE SYSTEM</span>
+
+                    <h2>
+                        From Raw Data
+                        <span>to Intelligent Prediction.</span>
+                    </h2>
+
+                    <p>
+                        DeliverIQ is an end-to-end Food Delivery Analytics and
+                        Machine Learning project that transforms raw delivery
+                        data into meaningful insights and estimated delivery times.
+                    </p>
+
+                    <div class="about-hero-tags">
+                        <span>Data Science</span>
+                        <span>Machine Learning</span>
+                        <span>Data Analytics</span>
+                        <span>Flask Application</span>
+                    </div>
+
+                </div>
+
+                <div class="about-hero-visual">
+                    <div class="about-orbit orbit-one"></div>
+                    <div class="about-orbit orbit-two"></div>
+                    <div class="about-core">
+                        <span>DQ</span>
+                        <small>INTELLIGENCE</small>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT SNAPSHOT -->
+
+            <div class="about-heading">
+                <span>01 / PROJECT OVERVIEW</span>
+                <h2>Project at a Glance</h2>
+                <p>The key facts and objectives behind DeliverIQ.</p>
+            </div>
+
+            <div class="about-stats-grid">
+
+                <div class="about-stat-card">
+                    <span>DATASET RECORDS</span>
+                    <strong>45,584</strong>
+                    <small>Delivery observations</small>
+                </div>
+
+                <div class="about-stat-card">
+                    <span>ORIGINAL COLUMNS</span>
+                    <strong>20</strong>
+                    <small>Dataset attributes</small>
+                </div>
+
+                <div class="about-stat-card">
+                    <span>ML ALGORITHMS</span>
+                    <strong>04</strong>
+                    <small>Regression models evaluated</small>
+                </div>
+
+                <div class="about-stat-card">
+                    <span>BEST MODEL R²</span>
+                    <strong>0.810</strong>
+                    <small>Random Forest evaluation</small>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT OBJECTIVE -->
+
+            <div class="about-content-card">
+
+                <div class="about-heading">
+                    <span>02 / PROBLEM STATEMENT</span>
+                    <h2>Why Did We Build DeliverIQ?</h2>
+                </div>
+
+                <p>
+                    Food delivery time can vary depending on multiple operational
+                    factors such as weather conditions, road traffic, delivery
+                    distance, vehicle condition, order type and delivery person
+                    characteristics.
+                </p>
+
+                <p>
+                    Understanding these factors through raw data alone can be
+                    difficult. DeliverIQ addresses this challenge by applying
+                    data processing, exploratory analysis and regression-based
+                    machine learning to study delivery patterns and estimate
+                    delivery duration.
+                </p>
+
+                <div class="about-objective-grid">
+
+                    <div>
+                        <span class="objective-icon">◈</span>
+                        <h3>Analyze</h3>
+                        <p>Understand delivery patterns and operational factors.</p>
+                    </div>
+
+                    <div>
+                        <span class="objective-icon">✧</span>
+                        <h3>Discover</h3>
+                        <p>Identify useful relationships through visual analytics.</p>
+                    </div>
+
+                    <div>
+                        <span class="objective-icon">◎</span>
+                        <h3>Predict</h3>
+                        <p>Estimate delivery time using a trained ML regression model.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPLETE PROJECT JOURNEY -->
+
+            <div class="about-heading">
+                <span>03 / END-TO-END WORKFLOW</span>
+                <h2>Our Complete Project Journey</h2>
+                <p>
+                    Every major stage, from dataset collection to the final
+                    machine learning application.
+                </p>
+            </div>
+
+
+            <div class="journey-timeline">
+
+                <!-- STAGE 1 -->
+                <article class="journey-card journey-purple">
+
+                    <div class="journey-number">01</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">DATA COLLECTION</span>
+
+                        <h3>Dataset Acquisition from Kaggle</h3>
+
+                        <p>
+                            We started by obtaining the Zomato Food Delivery
+                            Dataset from Kaggle. The original dataset contained
+                            45,584 records and 20 columns describing delivery
+                            operations and order conditions.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Kaggle</span>
+                            <span>CSV</span>
+                            <span>Dataset Exploration</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- STAGE 2 -->
+                <article class="journey-card journey-blue">
+
+                    <div class="journey-number">02</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">DATA QUALITY</span>
+
+                        <h3>Data Quality Assessment</h3>
+
+                        <p>
+                            We examined dataset structure, data types, missing
+                            values, duplicate records and inconsistent data.
+                            A separate quality assessment script was developed
+                            to understand the condition of the raw dataset.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Data Profiling</span>
+                            <span>Missing Values</span>
+                            <span>Duplicate Checks</span>
+                            <span>Quality Report</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- STAGE 3 -->
+                <article class="journey-card journey-pink">
+
+                    <div class="journey-number">03</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">DATA CLEANING</span>
+
+                        <h3>Data Cleaning and Preparation</h3>
+
+                        <p>
+                            The raw dataset was cleaned and prepared for
+                            subsequent analytical stages. The cleaned output
+                            was stored separately to preserve a structured
+                            workflow.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Data Cleaning</span>
+                            <span>Consistency Checks</span>
+                            <span>Processed Dataset</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- STAGE 4 -->
+                <article class="journey-card journey-orange">
+
+                    <div class="journey-number">04</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">DATA TRANSFORMATION</span>
+
+                        <h3>Transformation and Feature Engineering</h3>
+
+                        <p>
+                            We transformed relevant data into useful formats
+                            for analysis. Standardized and normalized datasets
+                            were generated, along with additional time and
+                            delivery-related features.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Standardization</span>
+                            <span>Normalization</span>
+                            <span>Feature Engineering</span>
+                            <span>Data Transformation</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- STAGE 5 -->
+                <article class="journey-card journey-cyan">
+
+                    <div class="journey-number">05</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">DATA INTEGRATION</span>
+
+                        <h3>Reference Data Integration</h3>
+
+                        <p>
+                            Weather and traffic reference lookup datasets were
+                            integrated with the prepared delivery data.
+                            Additional analytical features were created to
+                            represent weather severity and traffic congestion.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Weather Lookup</span>
+                            <span>Traffic Lookup</span>
+                            <span>Weather Severity Score</span>
+                            <span>Traffic Congestion Score</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- STAGE 6 -->
+                <article class="journey-card journey-green">
+
+                    <div class="journey-number">06</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">EXPLORATORY DATA ANALYSIS</span>
+
+                        <h3>Exploratory Data Analysis (EDA)</h3>
+
+                        <p>
+                            We performed exploratory analysis to understand
+                            delivery-time distribution and the relationship
+                            between delivery time and different operational
+                            factors.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Distribution Analysis</span>
+                            <span>Group Analysis</span>
+                            <span>Correlation Analysis</span>
+                            <span>Data Visualization</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- EDA GRAPHS -->
+                <div class="about-content-card eda-gallery">
+
+                    <span class="journey-label">EDA VISUALIZATION GALLERY</span>
+
+                    <h3>Eight Analytical Visualizations</h3>
+
+                    <div class="eda-list">
+
+                        <div><b>01</b> Delivery Time Distribution</div>
+                        <div><b>02</b> Weather vs Delivery Time</div>
+                        <div><b>03</b> Traffic vs Delivery Time</div>
+                        <div><b>04</b> City Category-wise Delivery</div>
+                        <div><b>05</b> Vehicle Analysis</div>
+                        <div><b>06</b> Delivery Rating Distribution</div>
+                        <div><b>07</b> Correlation Heatmap</div>
+                        <div><b>08</b> Order Type Analysis</div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STAGE 7 -->
+                <article class="journey-card journey-purple">
+
+                    <div class="journey-number">07</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">DATA PREPROCESSING</span>
+
+                        <h3>Machine Learning Data Preparation</h3>
+
+                        <p>
+                            Numerical and categorical features were processed
+                            using suitable preprocessing techniques. The
+                            dataset was divided into training and testing
+                            subsets using an 80:20 split.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Median Imputation</span>
+                            <span>StandardScaler</span>
+                            <span>One-Hot Encoding</span>
+                            <span>80:20 Split</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- STAGE 8 -->
+                <article class="journey-card journey-blue">
+
+                    <div class="journey-number">08</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">FINAL VERIFICATION</span>
+
+                        <h3>Data Validation and Verification</h3>
+
+                        <p>
+                            We developed a final verification stage to check
+                            the generated datasets, preprocessing outputs,
+                            model input readiness and important project files.
+                            All 30 verification checks passed.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Automated Validation</span>
+                            <span>30/30 Checks Passed</span>
+                            <span>Final Dataset Verification</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- STAGE 9 -->
+                <article class="journey-card journey-pink">
+
+                    <div class="journey-number">09</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">MACHINE LEARNING</span>
+
+                        <h3>Regression Model Training</h3>
+
+                        <p>
+                            Four regression algorithms were trained using
+                            the prepared training dataset. Their predictions
+                            were evaluated against the testing dataset.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Linear Regression</span>
+                            <span>Decision Tree</span>
+                            <span>Random Forest</span>
+                            <span>Gradient Boosting</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- STAGE 10 -->
+                <article class="journey-card journey-orange">
+
+                    <div class="journey-number">10</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">MODEL EVALUATION</span>
+
+                        <h3>Performance Comparison and Selection</h3>
+
+                        <p>
+                            The trained algorithms were compared using
+                            Mean Absolute Error (MAE), Root Mean Squared
+                            Error (RMSE) and R-squared (R²).
+                            Random Forest achieved the best reported
+                            performance on our test dataset.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>MAE</span>
+                            <span>RMSE</span>
+                            <span>R² Score</span>
+                            <span>Best Model Selection</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- STAGE 11 -->
+                <article class="journey-card journey-cyan">
+
+                    <div class="journey-number">11</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">MODEL VISUALIZATION</span>
+
+                        <h3>Model Performance Visualization</h3>
+
+                        <p>
+                            Model evaluation visualizations were developed
+                            to interpret prediction performance, compare
+                            algorithms, examine prediction errors and
+                            understand feature importance.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Model Comparison</span>
+                            <span>Actual vs Predicted</span>
+                            <span>Error Distribution</span>
+                            <span>Feature Importance</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- STAGE 12 -->
+                <article class="journey-card journey-green">
+
+                    <div class="journey-number">12</div>
+
+                    <div class="journey-content">
+
+                        <span class="journey-label">WEB APPLICATION</span>
+
+                        <h3>Interactive DeliverIQ Application</h3>
+
+                        <p>
+                            Finally, we integrated the saved machine learning
+                            model and preprocessing pipeline into a Flask
+                            application. An interactive dashboard was created
+                            to display analytical results and accept delivery
+                            details for live prediction.
+                        </p>
+
+                        <div class="journey-tags">
+                            <span>Python Flask</span>
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>Plotly.js</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- TECH STACK -->
+
+            <div class="about-heading">
+                <span>04 / TECHNOLOGY STACK</span>
+                <h2>Tools & Technologies</h2>
+                <p>Technologies used throughout the project lifecycle.</p>
+            </div>
+
+            <div class="tech-grid">
+
+                <div class="tech-card">
+                    <span class="tech-symbol">Py</span>
+                    <h3>Python</h3>
+                    <p>Data processing and model development</p>
+                </div>
+
+                <div class="tech-card">
+                    <span class="tech-symbol">PD</span>
+                    <h3>Pandas</h3>
+                    <p>Dataset manipulation and analysis</p>
+                </div>
+
+                <div class="tech-card">
+                    <span class="tech-symbol">NP</span>
+                    <h3>NumPy</h3>
+                    <p>Numerical computation</p>
+                </div>
+
+                <div class="tech-card">
+                    <span class="tech-symbol">SK</span>
+                    <h3>Scikit-learn</h3>
+                    <p>Preprocessing and regression models</p>
+                </div>
+
+                <div class="tech-card">
+                    <span class="tech-symbol">MP</span>
+                    <h3>Matplotlib</h3>
+                    <p>Statistical visualizations</p>
+                </div>
+
+                <div class="tech-card">
+                    <span class="tech-symbol">SB</span>
+                    <h3>Seaborn</h3>
+                    <p>Exploratory data visualizations</p>
+                </div>
+
+                <div class="tech-card">
+                    <span class="tech-symbol">FL</span>
+                    <h3>Flask</h3>
+                    <p>Python web application backend</p>
+                </div>
+
+                <div class="tech-card">
+                    <span class="tech-symbol">JS</span>
+                    <h3>JavaScript</h3>
+                    <p>Interactive dashboard functionality</p>
+                </div>
+
+                <div class="tech-card">
+                    <span class="tech-symbol">PL</span>
+                    <h3>Plotly.js</h3>
+                    <p>Interactive charts and analytics</p>
+                </div>
+
+                <div class="tech-card">
+                    <span class="tech-symbol">VS</span>
+                    <h3>VS Code</h3>
+                    <p>Development environment</p>
+                </div>
+
+            </div>
+
+
+            <!-- MODEL RESULTS -->
+
+            <div class="about-heading">
+                <span>05 / MODEL PERFORMANCE</span>
+                <h2>How Did Our Models Perform?</h2>
+                <p>Comparison based on the reported test-set evaluation.</p>
+            </div>
+
+            <div class="about-content-card">
+
+                <div class="about-results-intro">
+                    <div>
+                        <span class="journey-label">WINNING ALGORITHM</span>
+                        <h3>Random Forest Regressor</h3>
+                        <p>
+                            Selected based on the lowest MAE and highest
+                            R² score among the evaluated models.
+                        </p>
+                    </div>
+
+                    <div class="about-winner-badge">BEST MODEL</div>
+                </div>
+
+                <div class="about-results-grid">
+
+                    <div class="about-result-item">
+                        <span>MAE</span>
+                        <strong>3.23</strong>
+                        <small>Minutes</small>
+                    </div>
+
+                    <div class="about-result-item">
+                        <span>RMSE</span>
+                        <strong>4.10</strong>
+                        <small>Minutes</small>
+                    </div>
+
+                    <div class="about-result-item">
+                        <span>R² SCORE</span>
+                        <strong>0.810</strong>
+                        <small>Test set</small>
+                    </div>
+
+                </div>
+
+                <div class="about-table-wrapper">
+
+                    <table class="about-model-table">
+
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>MAE</th>
+                                <th>RMSE</th>
+                                <th>R² Score</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="winner-row">
+                                <td>Random Forest</td>
+                                <td>3.23</td>
+                                <td>4.10</td>
+                                <td>0.810</td>
+                            </tr>
+
+                            <tr>
+                                <td>Decision Tree</td>
+                                <td>3.39</td>
+                                <td>4.37</td>
+                                <td>0.784</td>
+                            </tr>
+
+                            <tr>
+                                <td>Gradient Boosting</td>
+                                <td>3.94</td>
+                                <td>4.93</td>
+                                <td>0.724</td>
+                            </tr>
+
+                            <tr>
+                                <td>Linear Regression</td>
+                                <td>4.96</td>
+                                <td>6.27</td>
+                                <td>0.555</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p class="about-note">
+                    MAE and RMSE are measured in minutes. Lower error values
+                    indicate better prediction performance, while a higher
+                    R² score indicates better fit on the evaluated dataset.
+                </p>
+
+            </div>
+
+
+            <!-- OUTPUTS -->
+
+            <div class="about-heading">
+                <span>06 / PROJECT OUTPUTS</span>
+                <h2>What Did We Build?</h2>
+            </div>
+
+            <div class="outputs-grid">
+
+                <div class="output-card">
+                    <span>01</span>
+                    <h3>Processed Datasets</h3>
+                    <p>
+                        Cleaned, transformed, integrated, standardized,
+                        normalized and preprocessed CSV files.
+                    </p>
+                </div>
+
+                <div class="output-card">
+                    <span>02</span>
+                    <h3>EDA Reports & Graphs</h3>
+                    <p>
+                        Analytical graphs and summary reports for
+                        understanding delivery patterns.
+                    </p>
+                </div>
+
+                <div class="output-card">
+                    <span>03</span>
+                    <h3>Trained ML Models</h3>
+                    <p>
+                        Saved best-performing model and preprocessing
+                        pipeline for application integration.
+                    </p>
+                </div>
+
+                <div class="output-card">
+                    <span>04</span>
+                    <h3>Evaluation Results</h3>
+                    <p>
+                        Model comparison metrics, prediction outputs
+                        and performance visualizations.
+                    </p>
+                </div>
+
+                <div class="output-card">
+                    <span>05</span>
+                    <h3>Flask Web Application</h3>
+                    <p>
+                        Interactive dashboard, analytics and
+                        machine learning prediction interface.
+                    </p>
+                </div>
+
+                <div class="output-card">
+                    <span>06</span>
+                    <h3>Prediction API</h3>
+                    <p>
+                        Backend endpoint that accepts delivery details
+                        and returns estimated delivery duration.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- LIMITATIONS AND FUTURE SCOPE -->
+
+            <div class="about-heading">
+                <span>07 / FUTURE DEVELOPMENT</span>
+                <h2>Limitations & Future Scope</h2>
+                <p>Opportunities to improve DeliverIQ in future versions.</p>
+            </div>
+
+            <div class="future-grid">
+
+                <div class="future-card">
+
+                    <h3>Current Scope</h3>
+
+                    <ul>
+                        <li>Dataset-based delivery analysis</li>
+                        <li>Regression-based time estimation</li>
+                        <li>Historical pattern visualization</li>
+                        <li>Local interactive web application</li>
+                        <li>Saved model and preprocessor integration</li>
+                    </ul>
+
+                </div>
+
+                <div class="future-card future-highlight">
+
+                    <h3>Future Enhancements</h3>
+
+                    <ul>
+                        <li>Real-time traffic and weather integration</li>
+                        <li>Live delivery tracking and map integration</li>
+                        <li>Cloud deployment and database integration</li>
+                        <li>Additional datasets and model optimization</li>
+                        <li>Delivery performance monitoring</li>
+                        <li>Advanced user and administrator features</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- FINAL CONCLUSION -->
+
+            <div class="about-conclusion">
+
+                <span>THE DELIVERIQ JOURNEY</span>
+
+                <h2>
+                    Turning Data Into
+                    <span>Intelligent Decisions.</span>
+                </h2>
+
+                <p>
+                    DeliverIQ demonstrates an end-to-end data science workflow:
+                    collecting raw data, assessing data quality, cleaning and
+                    transforming information, integrating reference datasets,
+                    discovering patterns through EDA, preparing machine learning
+                    features, training and evaluating regression models, and
+                    integrating the selected model into an interactive web
+                    application.
+                </p>
+
+                <p>
+                    The final system uses the selected Random Forest Regressor
+                    to estimate food delivery time from user-provided delivery
+                    information.
+                </p>
+
+                <div class="conclusion-line"></div>
+
+                <strong>DELIVERIQ · FOOD DELIVERY ANALYTICS & PREDICTION</strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer>
+            <p>DeliverIQ — Food Delivery Analytics & Prediction System</p>
+            <p>Academic Mini Project | Local Dashboard</p>
+        </footer>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+Metric,Value
+Original Valid Records,45584
+Training Records,36467
+Testing Records,9117
+Input Features Before Encoding,17
+Features After Encoding,34
+Target Variable,Time_taken (min)
+Train-Test Ratio,80:20

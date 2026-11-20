@@ -1,0 +1,8 @@
+Transformation,Status
+Date Feature Extraction,Completed
+Time Feature Extraction,Completed
+Delivery Distance,Completed
+Traffic Label Encoding,Completed
+One-Hot Encoding,Completed
+Standardization,Completed
+Normalization,Completed

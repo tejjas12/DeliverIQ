@@ -1,0 +1,8 @@
+Weather_conditions,Weather_Severity_Score,Weather_Category
+Sunny,1,Clear
+Cloudy,2,Moderate
+Windy,2,Moderate
+Fog,3,Low Visibility
+Stormy,5,Severe
+Sandstorms,4,Severe
+Unknown,0,Unclassified

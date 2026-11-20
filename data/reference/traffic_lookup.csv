@@ -1,0 +1,6 @@
+Road_traffic_density,Traffic_Congestion_Score,Traffic_Category
+Low,1,Smooth
+Medium,2,Moderate
+High,3,Heavy
+Jam,4,Severe
+Unknown,0,Unclassified

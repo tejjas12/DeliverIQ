@@ -1,0 +1,12 @@
+Check,Result
+Cleaned rows do not exceed raw rows,True
+Integration preserves row count,True
+Train and test rows are accounted for,True
+Integrated column: Weather_Severity_Score,True
+Integrated column: Weather_Category,True
+Integrated column: Traffic_Congestion_Score,True
+Integrated column: Traffic_Category,True
+Train dataset has no missing values,True
+Train target column exists,True
+Test dataset has no missing values,True
+Test target column exists,True

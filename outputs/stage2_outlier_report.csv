@@ -1,0 +1,4 @@
+Column,Lower Limit,Upper Limit,Outlier Count
+Delivery_person_Age,10.0,50.0,0
+Delivery_person_Ratings,3.9,5.5,1223
+Time_taken (min),-0.5,51.5,270

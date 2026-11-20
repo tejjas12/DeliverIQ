@@ -1,0 +1,75 @@
+DELIVERIQ - DATA INSPECTION REPORT
+=======================================================
+
+Total Rows: 45584
+Total Columns: 20
+Duplicate Rows: 0
+Memory Usage: 33.64 MB
+
+COLUMN INFORMATION
+ID                              object
+Delivery_person_ID              object
+Delivery_person_Age            float64
+Delivery_person_Ratings        float64
+Restaurant_latitude            float64
+Restaurant_longitude           float64
+Delivery_location_latitude     float64
+Delivery_location_longitude    float64
+Order_Date                      object
+Time_Orderd                     object
+Time_Order_picked               object
+Weather_conditions              object
+Road_traffic_density            object
+Vehicle_condition                int64
+Type_of_order                   object
+Type_of_vehicle                 object
+multiple_deliveries            float64
+Festival                        object
+City                            object
+Time_taken (min)                 int64
+
+MISSING VALUES REPORT
+                     Column  Missing_Values  Missing_Percentage
+                         ID               0                0.00
+         Delivery_person_ID               0                0.00
+        Delivery_person_Age            1854                4.07
+    Delivery_person_Ratings            1908                4.19
+        Restaurant_latitude               0                0.00
+       Restaurant_longitude               0                0.00
+ Delivery_location_latitude               0                0.00
+Delivery_location_longitude               0                0.00
+                 Order_Date               0                0.00
+                Time_Orderd            1731                3.80
+          Time_Order_picked               0                0.00
+         Weather_conditions             616                1.35
+       Road_traffic_density             601                1.32
+          Vehicle_condition               0                0.00
+              Type_of_order               0                0.00
+            Type_of_vehicle               0                0.00
+        multiple_deliveries             993                2.18
+                   Festival             228                0.50
+                       City            1200                2.63
+           Time_taken (min)               0                0.00
+
+STATISTICAL SUMMARY
+                               count unique            top   freq       mean        std        min        25%        50%        75%        max
+ID                             45584  45584         0xcdcd      1        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+Delivery_person_ID             45584   1320  JAPRES11DEL02     67        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+Delivery_person_Age          43730.0    NaN            NaN    NaN  29.566911   5.815064       15.0       25.0       30.0       35.0       50.0
+Delivery_person_Ratings      43676.0    NaN            NaN    NaN   4.633774   0.334744        1.0        4.5        4.7        4.9        6.0
+Restaurant_latitude          45584.0    NaN            NaN    NaN  17.017948   8.185674 -30.905562  12.933284   18.55144  22.728163  30.914057
+Restaurant_longitude         45584.0    NaN            NaN    NaN  70.229684  22.885575 -88.366217      73.17  75.897963  78.044095  88.433452
+Delivery_location_latitude   45584.0    NaN            NaN    NaN   17.46548   7.335562       0.01  12.988453  18.633934  22.785049  31.054057
+Delivery_location_longitude  45584.0    NaN            NaN    NaN  70.844161  21.120578       0.01      73.28  76.002574  78.107044  88.563452
+Order_Date                     45584     44     15-03-2022   1192        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+Time_Orderd                    43853    176          21:55    461        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+Time_Order_picked              45584    193          21:30    495        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+Weather_conditions             44968      6            Fog   7653        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+Road_traffic_density           44983      4            Low  15476        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+Vehicle_condition            45584.0    NaN            NaN    NaN   1.023385   0.839055        0.0        0.0        1.0        2.0        3.0
+Type_of_order                  45584      4          Snack  11530        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+Type_of_vehicle                45584      4     motorcycle  26429        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+multiple_deliveries          44591.0    NaN            NaN    NaN   0.744635    0.57251        0.0        0.0        1.0        1.0        3.0
+Festival                       45356      2             No  44460        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+City                           44384      3  Metropolitian  34087        NaN        NaN        NaN        NaN        NaN        NaN        NaN
+Time_taken (min)             45584.0    NaN            NaN    NaN  26.293963   9.384298       10.0       19.0       26.0       32.0       54.0

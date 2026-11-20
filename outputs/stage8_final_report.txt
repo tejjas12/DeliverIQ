@@ -1,0 +1,46 @@
+DELIVERIQ - FINAL VERIFICATION REPORT
+=======================================================
+
+Report Date: 13-11-2026 13:38
+
+Checks Passed: 30/30
+Overall Status: PASS
+
+FILE VERIFICATION
+              File    Status                                      Path
+       Raw Dataset Available               data/raw/Zomato Dataset.csv
+   Cleaned Dataset Available      data/processed/deliveriq_cleaned.csv
+Integrated Dataset Available       data/final/deliveriq_integrated.csv
+  Training Dataset Available            data/final/deliveriq_train.csv
+   Testing Dataset Available             data/final/deliveriq_test.csv
+    Stage 1 Report Available      outputs/stage1_inspection_report.txt
+    Stage 2 Report Available         outputs/stage2_quality_report.txt
+   Stage 3 Summary Available       outputs/stage3_cleaning_summary.csv
+   Stage 4 Summary Available outputs/stage4_transformation_summary.csv
+   Stage 5 Summary Available     outputs/stage5_integration_report.csv
+   Stage 7 Summary Available  outputs/stage7_preprocessing_summary.csv
+
+QUALITY CHECKS
+                                      Check  Result
+        Cleaned rows do not exceed raw rows    True
+            Integration preserves row count    True
+      Train and test rows are accounted for    True
+  Integrated column: Weather_Severity_Score    True
+        Integrated column: Weather_Category    True
+Integrated column: Traffic_Congestion_Score    True
+        Integrated column: Traffic_Category    True
+        Train dataset has no missing values    True
+                 Train target column exists    True
+         Test dataset has no missing values    True
+                  Test target column exists    True
+
+EDA GRAPH VERIFICATION
+                            Graph    Status
+01_delivery_time_distribution.png Available
+  02_weather_vs_delivery_time.png Available
+  03_traffic_vs_delivery_time.png Available
+        04_city_wise_delivery.png Available
+          05_vehicle_analysis.png Available
+       06_rating_distribution.png Available
+       07_correlation_heatmap.png Available
+       08_order_type_analysis.png Available
