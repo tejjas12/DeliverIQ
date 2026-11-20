@@ -6,7 +6,7 @@ DeliverIQ is a food delivery analytics project developed using Python, Flask, Pa
 
 It provides an interactive analytics dashboard to explore delivery performance, understand factors affecting delivery time, visualize patterns, and demonstrate machine learning predictions.
 
-🌐 Live Demo: https://deliveriq-1upc.onrender.com
+🌐 Live Demo: [https://deliveriq-1upc.onrender.com](https://deliveriq-lupc.onrender.com)
 
 📂 GitHub Repository: https://github.com/tejjas12/DeliverIQ
 
